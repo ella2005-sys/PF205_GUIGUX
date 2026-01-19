@@ -197,7 +197,7 @@ jLabel5.setCursor(new Cursor(Cursor.HAND_CURSOR));
     if (email.equals(UserSession.email) && password.equals(UserSession.password)) {
         JOptionPane.showMessageDialog(this, "Login Successful!");
 
-        landingPage home = new landingPage();
+        landingpage home = new landingpage();
         home.setVisible(true);
         this.dispose();
     } else {
