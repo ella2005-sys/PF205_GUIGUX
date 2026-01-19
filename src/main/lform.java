@@ -1,12 +1,19 @@
 
 package main;
 
+import java.awt.Cursor;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 public class lform extends javax.swing.JFrame {
 
     
     public lform() {
         initComponents();
+        
+        jLabel6register.setText("<html>Don’t have an account? <a href=''>Sign Up here.</a></html>");
+jLabel5.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
    
@@ -14,12 +21,21 @@ public class lform extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel6register = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,37 +47,87 @@ public class lform extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
         jLabel1.setText("Login to your Account");
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel3.setText("Email");
+
+        jLabel4.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel4.setText("Password");
+
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jButton1.setText("Sign In");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6register.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jLabel6register.setText("Don't have an account? Sign Up here");
+        jLabel6register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6registerMouseClicked(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(204, 255, 204));
+        jButton2.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jButton2.setText("Exit");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6register, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                .addGap(64, 64, 64))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jToggleButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(280, 280, 280))
+                .addGap(120, 120, 120)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(81, 81, 81)
+                .addComponent(jLabel6register)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 510, 847));
@@ -94,11 +160,68 @@ public class lform extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String email = jTextField1.getText().trim();
+    String password = jTextField2.getText().trim();
+
+    // 1. Check if fields are empty
+    if (email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Please fill in both Email and Password fields.",
+            "Incomplete Data",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
+
+    // 2. Check if an account has been created
+    if (UserSession.email == null || UserSession.password == null) {
+        JOptionPane.showMessageDialog(
+            this,
+            "No account yet. Please register first.",
+            "No Account",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
+
+    // 3. Validate login using the registered account
+    if (email.equals(UserSession.email) && password.equals(UserSession.password)) {
+        JOptionPane.showMessageDialog(this, "Login Successful!");
+
+        landingPage home = new landingPage();
+        home.setVisible(true);
+        this.dispose();
+    } else {
+        // Now this correctly shows when the password or email is wrong
+        JOptionPane.showMessageDialog(
+            this,
+            "Incorrect email or password. Please try again.",
+            "Login Error",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
+
+    
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel6registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6registerMouseClicked
+        register rgf = new register();
+        rgf.setVisible(true);
+        rgf.pack();
+        rgf.setLocationRelativeTo(null);
+        rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jLabel6registerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -136,11 +259,18 @@ public class lform extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6register;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
