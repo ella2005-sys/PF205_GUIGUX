@@ -46,7 +46,10 @@ public class register extends javax.swing.JFrame {
         return;
     }
 
-    // 2. INSERT INTO DATABASE
+    // 2. Hash the password
+    String hashedPassword = config.hashPassword(password);
+
+    // 3. INSERT INTO DATABASE
     config db = new config();
 
     String sql = "INSERT INTO tbl_users (u_name, u_email, u_address, u_password, u_phone) "
@@ -57,21 +60,21 @@ public class register extends javax.swing.JFrame {
         fullName,
         email,
         address,
-        password,
+        hashedPassword,  // Save hashed password
         contact
     );
 
-    // 3. (Optional) Save to UserSession
+    // 4. (Optional) Save to UserSession
     UserSession.fullName = fullName;
     UserSession.email = email;
     UserSession.address = address;
     UserSession.contact = contact;
-    UserSession.password = password;
+    UserSession.password = hashedPassword;
 
-    // 4. Success message
+    // 5. Success message
     javax.swing.JOptionPane.showMessageDialog(this, "Register Successfully");
 
-    // 5. Clear fields
+    // 6. Clear fields
     jTextField1.setText("");
     jTextField2.setText("");
     jTextField3.setText("");
@@ -79,9 +82,8 @@ public class register extends javax.swing.JFrame {
     jTextField5.setText("");
     jTextField6.setText("");
 
-    // 6. Go back to login
-    
 }
+
 
    private void backToLogin() {
     lform login = new lform(); // Login JFrame

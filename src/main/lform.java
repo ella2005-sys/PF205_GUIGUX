@@ -177,37 +177,34 @@ public class lform extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String email = jTextField1.getText().trim();
+      String email = jTextField1.getText().trim();
     String password = jTextField2.getText().trim();
 
-    if (email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter email and password.");
+    if(email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in both Email and Password fields.", "Incomplete Data", JOptionPane.WARNING_MESSAGE);
         return;
     }
 
-    String sql =
-        "SELECT * FROM tbl_users WHERE u_email = ? AND u_password = ?";
+    // Hash the password entered by user
+    String hashedPassword = config.hashPassword(password);
+
+    String sql = "SELECT * FROM tbl_users WHERE u_email = ? AND u_password = ?";
 
     try (Connection con = config.connectDB();
          PreparedStatement pst = con.prepareStatement(sql)) {
 
         pst.setString(1, email);
-        pst.setString(2, password);
+        pst.setString(2, hashedPassword);
 
         ResultSet rs = pst.executeQuery();
 
-        if (rs.next()) {
+        if(rs.next()) {
             JOptionPane.showMessageDialog(this, "Login Successful!");
-
-            new landingpage().setVisible(true);
+            landingpage home = new landingpage();
+            home.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(
-                this,
-                "No account found. Please create an account first.",
-                "Login Failed",
-                JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(this, "No account found. Please create an account first.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
 
     } catch (SQLException e) {
