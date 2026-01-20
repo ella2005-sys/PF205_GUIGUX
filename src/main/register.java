@@ -16,54 +16,84 @@ public class register extends javax.swing.JFrame {
     // ================== YOUR METHODS GO HERE ==================
 
     private void registerUser() {
-        String fullName = jTextField1.getText().trim();
-        String email = jTextField2.getText().trim();
-        String address = jTextField3.getText().trim();
-        String contact = jTextField4.getText().trim();
-        String password = jTextField5.getText().trim();
-        String confirm = jTextField6.getText().trim();
+    String fullName = jTextField1.getText().trim();
+    String email = jTextField2.getText().trim();
+    String address = jTextField3.getText().trim();
+    String contact = jTextField4.getText().trim();
+    String password = jTextField5.getText().trim();
+    String confirm = jTextField6.getText().trim();
 
-        if(fullName.isEmpty() || email.isEmpty() || address.isEmpty() ||
-           contact.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please fill all fields.", "Incomplete Data", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    // 1. Validation
+    if (fullName.isEmpty() || email.isEmpty() || address.isEmpty() ||
+        contact.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
 
-        if(!password.equals(confirm)) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Passwords do not match.", "Password Error", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Save to UserSession
-        UserSession.fullName = fullName;
-        UserSession.email = email;
-        UserSession.address = address;
-        UserSession.contact = contact;
-        UserSession.password = password;
-
-        javax.swing.JOptionPane.showMessageDialog(this, "Register Successfully");
-
-        // Clear fields
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jTextField6.setText("");
-
-        backToLogin();
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Please fill all fields.",
+            "Incomplete Data",
+            javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+        return;
     }
-   
+
+    if (!password.equals(confirm)) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Passwords do not match.",
+            "Password Error",
+            javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
+
+    // 2. INSERT INTO DATABASE
+    config db = new config();
+
+    String sql = "INSERT INTO tbl_users (u_name, u_email, u_address, u_password, u_phone) "
+               + "VALUES (?, ?, ?, ?, ?)";
+
+    db.addRecord(
+        sql,
+        fullName,
+        email,
+        address,
+        password,
+        contact
+    );
+
+    // 3. (Optional) Save to UserSession
+    UserSession.fullName = fullName;
+    UserSession.email = email;
+    UserSession.address = address;
+    UserSession.contact = contact;
+    UserSession.password = password;
+
+    // 4. Success message
+    javax.swing.JOptionPane.showMessageDialog(this, "Register Successfully");
+
+    // 5. Clear fields
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+
+    // 6. Go back to login
+    
+}
+
+   private void backToLogin() {
+    lform login = new lform(); // Login JFrame
+    login.setVisible(true);
+    this.dispose(); // close register form
+}
+
     
     
 
 
-    private void backToLogin() {
-        lform loginForm = new lform();
-        loginForm.setVisible(true);
-        this.dispose();
-    }
-
+    
     
     
 
@@ -166,6 +196,11 @@ public class register extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 255, 204));
         jButton2.setFont(new java.awt.Font("Cambria", 1, 16)); // NOI18N
         jButton2.setText("Back to Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 600, 140, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -254,6 +289,14 @@ public class register extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       lform login = new lform(); // <-- your login JFrame class
+    login.setVisible(true);
+
+    // Close Register Form
+    this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -310,4 +353,6 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    
 }

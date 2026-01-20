@@ -1,20 +1,29 @@
 
 package main;
 
+import config.config;
 import java.awt.Cursor;
-import javax.swing.JFrame;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 
 
 public class lform extends javax.swing.JFrame {
 
     
     public lform() {
-        initComponents();
-        
-        jLabel6register.setText("<html>Don’t have an account? <a href=''>Sign Up here.</a></html>");
-jLabel5.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
+    initComponents();
+
+    jLabel6register.setText(
+        "<html>Don’t have an account? <a href=''>Sign Up here.</a></html>"
+    );
+
+    jLabel6register.setCursor(new Cursor(Cursor.HAND_CURSOR));
+}
+    
 
    
     @SuppressWarnings("unchecked")
@@ -171,56 +180,47 @@ jLabel5.setCursor(new Cursor(Cursor.HAND_CURSOR));
        String email = jTextField1.getText().trim();
     String password = jTextField2.getText().trim();
 
-    // 1. Check if fields are empty
     if (email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(
-            this,
-            "Please fill in both Email and Password fields.",
-            "Incomplete Data",
-            JOptionPane.WARNING_MESSAGE
-        );
+        JOptionPane.showMessageDialog(this, "Please enter email and password.");
         return;
     }
 
-    // 2. Check if an account has been created
-    if (UserSession.email == null || UserSession.password == null) {
-        JOptionPane.showMessageDialog(
-            this,
-            "No account yet. Please register first.",
-            "No Account",
-            JOptionPane.WARNING_MESSAGE
-        );
-        return;
+    String sql =
+        "SELECT * FROM tbl_users WHERE u_email = ? AND u_password = ?";
+
+    try (Connection con = config.connectDB();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, email);
+        pst.setString(2, password);
+
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            JOptionPane.showMessageDialog(this, "Login Successful!");
+
+            new landingpage().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(
+                this,
+                "No account found. Please create an account first.",
+                "Login Failed",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage());
     }
-
-    // 3. Validate login using the registered account
-    if (email.equals(UserSession.email) && password.equals(UserSession.password)) {
-        JOptionPane.showMessageDialog(this, "Login Successful!");
-
-        landingpage home = new landingpage();
-        home.setVisible(true);
-        this.dispose();
-    } else {
-        // Now this correctly shows when the password or email is wrong
-        JOptionPane.showMessageDialog(
-            this,
-            "Incorrect email or password. Please try again.",
-            "Login Error",
-            JOptionPane.ERROR_MESSAGE
-        );
-    }
-
     
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6registerMouseClicked
-        register rgf = new register();
-        rgf.setVisible(true);
-        rgf.pack();
-        rgf.setLocationRelativeTo(null);
-        rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        register reg = new register(); // your Register JFrame
+    reg.setVisible(true);
+    this.dispose(); // close login form
     }//GEN-LAST:event_jLabel6registerMouseClicked
 
     /**
